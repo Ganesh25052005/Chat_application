@@ -64,7 +64,7 @@ export const login = async (req,res)=>{
 
         const isPasswordCorrect = await bcrypt.compare(password,user.password);
         
-        if(!isPasswordCorrect)res.status(400).json({message:"wrong credentials"});
+        if(!isPasswordCorrect)res.status(400).json({message:"Wrong credentials"});
        
         
         generate_token(user._id,res);

@@ -7,7 +7,6 @@ app.use(cookieParser());
 import dotenv from 'dotenv';
 dotenv.config();
 import {connectDb} from './lib/db.js';
-connectDb();
 
 import path from 'path';
 
@@ -34,11 +33,12 @@ app.use('/api/messages',messageRoutes);
 if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname,"../frontend/dist")));
 
-    app.get("*",(req,res)=>{
-        res.sendFile(path.join(__dirname,"../frontend","dist","index.html"));
-    })
+    app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
 }
 
-server.listen(PORT,()=>{
-    console.log(`server running on ${PORT}`)
+server.listen(PORT, () => {
+console.log(`Server running on ${PORT}`);
+connectDb();
 });
