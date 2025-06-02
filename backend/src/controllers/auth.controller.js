@@ -1,5 +1,5 @@
 import { json } from "express";
-import User from "../models/user.model.js"
+import users from "../models/user.model.js"
 import { generate_token } from "../lib/util.js"
 
 import bcrypt from 'bcryptjs';
@@ -16,12 +16,12 @@ export const signup = async (req,res)=>{
         if(password.length < 6){
             return res.status(400).json({message:"Password must be at least 6 characters"});
         }
-        const user = await User.findOne ({email:email});
+        const user = await users.findOne ({email:email});
         if(user) return res.status(400).json({message: "Email already in use"});
         
         const hashedPassword = await bcrypt.hash(password,10);
 
-        const newUser =  await User.create(
+        const newUser =  await users.create(
             {
                 fullname:fullname,
                 email:email,
@@ -58,7 +58,7 @@ export const login = async (req,res)=>{
             return req.status(400).json({message:"Password must be at least 6 characters"});
         }
 
-        const user = await User.findOne({email:email});
+        const user = await users.findOne({email:email});
 
         if(!user) return res.status(400).json({message:"Wrong credentials"});
 
@@ -95,7 +95,7 @@ export const updateProfile = async (req,res)=>{
         if(!profilePic) return res.status(400).json({message:"Profile Pic is required"});
 
         const uploadResponse = await cloudinary.uploader.upload(profilePic);
-        const updatedUser = await User.findOneAndUpdate(userID,{profilePic:uploadResponse.secure_url},{new:true});
+        const updatedUser = await users.findOneAndUpdate(userID,{profilePic:uploadResponse.secure_url},{new:true});
 
         res.status(200).json(updatedUser);
 

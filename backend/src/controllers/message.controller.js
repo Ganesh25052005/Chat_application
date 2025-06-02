@@ -1,5 +1,5 @@
 import {json} from 'express';
-import User from '../models/user.model.js';
+import users from '../models/user.model.js';
 import Message from '../models/message.model.js';
 import cloudinary from '../lib/cloudinary.js';
 import { getReceiverSocketId,io } from '../lib/socket.js';
@@ -8,7 +8,7 @@ import { getReceiverSocketId,io } from '../lib/socket.js';
 export const getUsersForSideBar = async (req,res)=>{
     try {
         const loggedInUser = req.user._id;
-        const filteredUsers = await User.find({_id: { $ne:loggedInUser}}).select("-password");
+        const filteredUsers = await users.find({_id: { $ne:loggedInUser}}).select("-password");
         res.status(200).json(filteredUsers);
     } catch (error) {
         console.log(error);
