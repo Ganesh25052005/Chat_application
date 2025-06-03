@@ -9,7 +9,7 @@ export const generate_token = (userid,res)=>{
         maxAge: 7*24*3600*1000, //milliseconds
         httpOnly:true,
         sameSite:"strict",
-        secure: process.env.NODE_ENV !== "Development"
+        secure: process.env.NODE_ENV !== "development"
     })
 
     return token;
