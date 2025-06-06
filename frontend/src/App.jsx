@@ -22,7 +22,7 @@ const App = () => {
    const {theme} = useThemeStore();
   useEffect(() => {
     checkAuth();
-  }, [location.pathname,checkAuth]);
+  }, [checkAuth]);
 
 
 
