@@ -1,6 +1,6 @@
 import React, { use } from 'react'
 import NavBar from './components/NavBar'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes,useLocation } from 'react-router-dom'
 
 import HomePage from './pages/HomePage';
 import SignUpPage from './pages/SignUpPage';
@@ -17,13 +17,12 @@ import { Toaster } from 'react-hot-toast';
 import { useThemeStore } from './store/useThemeStore';
 
 const App = () => {
-
+  const location = useLocation();
   const {isCheckingAuth , authUser,checkAuth} = useAuthStore();
    const {theme} = useThemeStore();
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
-
+  }, [checkAuth,location.pathname]);
 
 
   if (isCheckingAuth && !authUser)
