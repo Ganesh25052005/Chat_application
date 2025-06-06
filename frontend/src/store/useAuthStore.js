@@ -3,7 +3,7 @@ import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import {io} from 'socket.io-client';
 
-const BASE_URL =  import.meta.env.MODE === "development"?"http://localhost:6969":import.meta.env.BASE_URL;
+const BASE_URL = axiosInstance.defaults.baseURL;
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -85,8 +85,8 @@ export const useAuthStore = create((set, get) => ({
 
   Oauthlogin: async ()=>{
     try {
-      window.location.href = `${BASE_URL}/api/auth/googleOauth`;
-      console.log("cancelled");
+      console.log(BASE_URL);
+      window.location.href = `${BASE_URL}/auth/googleOauth`;
     } catch (error) {
       console.log(error);
     }
