@@ -21,7 +21,6 @@ const PORT  = process.env.PORT;
 const __dirname = path.resolve();
 
 
-
 import passport from 'passport';
 app.use(passport.initialize());
 import { Strategy as GoogleStrategy} from 'passport-google-oauth20';
@@ -32,8 +31,6 @@ passport.use( new GoogleStrategy({
 },(accessToken, refreshToken,profile,done)=>{
     return done(null,profile);
 }));
-
-
 
 
 import authRoutes from "./routes/auth.routes.js";
