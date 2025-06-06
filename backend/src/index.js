@@ -21,6 +21,21 @@ const PORT  = process.env.PORT;
 const __dirname = path.resolve();
 
 
+
+import passport from 'passport';
+app.use(passport.initialize());
+import { Strategy as GoogleStrategy} from 'passport-google-oauth20';
+passport.use( new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL:"http://localhost:6969/api/auth/googleOauth/callback"
+},(accessToken, refreshToken,profile,done)=>{
+    return done(null,profile);
+}));
+
+
+
+
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 

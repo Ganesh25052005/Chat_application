@@ -15,6 +15,7 @@ export const useAuthStore = create((set, get) => ({
   socket: null,
 
   checkAuth: async () => {
+    set({isCheckingAuth:true});
     try {
       const res = await axiosInstance.get("/auth/check");
       set({ authUser: res.data });
@@ -79,6 +80,15 @@ export const useAuthStore = create((set, get) => ({
       toast.error(error.response.data.message);
     } finally {
       set({ isUpdatingProfile: false });
+    }
+  },
+
+  Oauthlogin: async ()=>{
+    try {
+      window.location.href = `${BASE_URL}/api/auth/googleOauth`;
+      console.log("cancelled");
+    } catch (error) {
+      console.log(error);
     }
   },
 

@@ -15,7 +15,7 @@ const SignUpPage = () => {
     password: "",
   });
 
-  const { signup, isSigningUp } = useAuthStore();
+  const { signup, isSigningUp,Oauthlogin } = useAuthStore();
 
   const validateForm = () => {
 
@@ -37,13 +37,18 @@ const SignUpPage = () => {
     if (success === true) signup(formData);
   };
 
+  const handleOauth = (e) =>{
+    e.preventDefault();
+    Oauthlogin();
+  };
+
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
+    <div className="h-screen grid lg:grid-cols-2">
       {/* left side */}
-      <div className="flex flex-col justify-center items-center p-6 sm:p-12">
-        <div className="w-full max-w-md space-y-8">
+      <div className="flex flex-col justify-center items-center p-6 pt-14 sm:pt-14">
+        <div className="w-full max-w-md space-y-4">
           {/* LOGO */}
-          <div className="text-center mb-8">
+          <div className="text-center">
             <div className="flex flex-col items-center gap-2 group">
               <div
                 className="size-12 rounded-xl bg-primary/10 flex items-center justify-center 
@@ -52,11 +57,11 @@ const SignUpPage = () => {
                 <MessageSquare className="size-6 text-primary" />
               </div>
               <h1 className="text-2xl font-bold mt-2">Create Account</h1>
-              <p className="text-base-content/60">Get started with your free account</p>
+              <p className="text-base-content/60">Sign in to your account</p>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Full Name</span>
@@ -133,6 +138,27 @@ const SignUpPage = () => {
               )}
             </button>
           </form>
+
+          <div className="">
+            <div className="flex justify-center mb-4">
+              <h2>Or</h2>
+            </div>
+            <div className="flex items-center justify-center">
+              <button type="button" 
+              onClick={handleOauth}
+              className="border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
+                <label className="label flex gap-2 px-2 py-2">
+                <img
+                  className="w-6 h-6"
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  loading="lazy"
+                  alt="google logo"
+                />
+                <span className="label-text font-medium">Sign Up with Google</span>
+              </label>
+              </button>
+            </div>
+          </div>
 
           <div className="text-center">
             <p className="text-base-content/60">

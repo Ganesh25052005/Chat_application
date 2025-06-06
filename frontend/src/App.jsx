@@ -18,11 +18,13 @@ import { useThemeStore } from './store/useThemeStore';
 
 const App = () => {
 
-  const {isCheckingAuth , authUser,checkAuth ,onlineUsers} = useAuthStore();
+  const {isCheckingAuth , authUser,checkAuth} = useAuthStore();
    const {theme} = useThemeStore();
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+  }, [location.pathname,checkAuth]);
+
+
 
   if (isCheckingAuth && !authUser)
     return (
