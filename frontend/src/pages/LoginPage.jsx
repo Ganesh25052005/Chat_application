@@ -43,7 +43,7 @@ const LoginPage = () => {
     <div className="h-screen grid lg:grid-cols-2">
       {/* Left Side - Form */}
       <div className="flex flex-col justify-center items-center p-6 pt-12 sm:p-12">
-        <div className="w-full max-w-md space-y-8">
+        <div className="w-full max-w-md space-y-6">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
@@ -127,15 +127,15 @@ const LoginPage = () => {
             </button>
           </form>
 
-          <div>
-            <div className="flex justify-center mt-2 mb-4">
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex justify-center">
               <h2>Or</h2>
             </div>
             <div className="flex items-center justify-center">
               <button type="button" 
               onClick={handleOauth}
               className="border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-                <label className="label flex gap-2 px-2 py-2">
+                <label className="label flex gap-2 px-2 py-2 cursor-pointer">
                 <img
                   className="w-6 h-6"
                   src="https://www.svgrepo.com/show/475656/google-color.svg"

@@ -15,7 +15,6 @@ export const useAuthStore = create((set, get) => ({
   socket: null,
 
   checkAuth: async () => {
-    set({isCheckingAuth:true});
     try {
       const res = await axiosInstance.get("/auth/check");
       set({ authUser: res.data });
@@ -86,7 +85,7 @@ export const useAuthStore = create((set, get) => ({
   Oauthlogin: async ()=>{
     try {
       console.log(BASE_URL);
-      window.location.href = `${BASE_URL}/auth/googleOauth`;
+      window.location.href = `${BASE_URL}/auth/googleOauth?prompt=select_account`;
     } catch (error) {
       console.log(error);
     }
